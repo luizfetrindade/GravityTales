@@ -12,6 +12,14 @@ import GameplayKit
 final class Hero: GKEntity {
     override init() {
         super.init()
+
+        
+        let moveComponent = MoveComponent(node: SKNode.init(), timeOffset: 3)
+        self.addComponent(moveComponent)
+        
+        let jumpComponent = JumpComponent(node: SKNode.init(), strength: 2)
+        self.addComponent(jumpComponent)
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
