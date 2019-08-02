@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:GravityRush.xcodeproj">
+      location = "group:/Users/luizfelipetrindade/Desktop/GravityTales/GravityRush/Storage.sks">
+   </FileRef>
+   <FileRef
+      location = "self:">
    </FileRef>
 </Workspace>

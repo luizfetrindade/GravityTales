@@ -23,8 +23,9 @@ class GameScene: SKScene {
     
     
     override func didMove(to view: SKView) {
-        let all = SKScene(fileNamed: "Storage")!
-        let floor = all.childNode(withName: "floor")!.copy() as! SKNode
+//        let all = SKScene(fileNamed: "Storage")!
+        let storage = SKScene(fileNamed: "Storage")!
+        let floor = storage.childNode(withName: "floor")!.copy() as! SKNode
         
         let playerAnimation: SKAction
         var textures: [SKTexture] = []
@@ -67,7 +68,7 @@ class GameScene: SKScene {
         addChild(box)
         
         
-        let swipeRight : UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.swipedRight(sender:x:y:z:))
+        let swipeRight : UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.swipedRight))
         let swipeLeft : UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.swipedLeft))
         let swipeUp : UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.swipedUp))
         let swipeDown : UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.swipedDown))
@@ -84,13 +85,10 @@ class GameScene: SKScene {
     }
     
     @objc func swipedRight(sender: UISwipeGestureRecognizer, x: CGFloat, y: CGFloat, z: CGFloat) {
-        //            self.physicsWorld.gravity.dx = 1.5
-        //            self.physicsWorld.gravity.dy = 0.0
-        //            self.player.zRotation = CGFloat(Double.pi/2)
-        //            print("swipe Right")
-        self.physicsWorld.gravity.dx = x
-        self.physicsWorld.gravity.dy = y
-        self.player.zRotation = z
+        self.physicsWorld.gravity.dx = 1.5
+        self.physicsWorld.gravity.dy = 0.0
+        self.player.zRotation = CGFloat(Double.pi/2)
+        print("swipe Right")
     }
     
     @objc func swipedLeft(sender: UISwipeGestureRecognizer) {
