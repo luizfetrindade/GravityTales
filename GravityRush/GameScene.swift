@@ -23,8 +23,9 @@ class GameScene: SKScene {
     
     
     override func didMove(to view: SKView) {
-        let all = SKScene(fileNamed: "Storage")!
-        let floor = all.childNode(withName: "floor")!.copy() as! SKNode
+//        let all = SKScene(fileNamed: "Storage")!
+        let storage = SKScene(fileNamed: "Storage")!
+        let floor = storage.childNode(withName: "floor")!.copy() as! SKNode
         
         let playerAnimation: SKAction
         var textures: [SKTexture] = []
@@ -57,7 +58,7 @@ class GameScene: SKScene {
         player.physicsBody?.restitution = 0.0
         box.physicsBody?.restitution = 0.0
         floor.physicsBody?.restitution = 0.0
-
+        
         motionManager.startGyroUpdates()
         motionManager.startMagnetometerUpdates()
         motionManager.startDeviceMotionUpdates()
@@ -66,24 +67,49 @@ class GameScene: SKScene {
         addChild(player)
         addChild(box)
         
+        
         let swipeRight : UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.swipedRight))
-
+        let swipeLeft : UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.swipedLeft))
+        let swipeUp : UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.swipedUp))
+        let swipeDown : UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.swipedDown))
+        
+        swipeLeft.direction = .left
         swipeRight.direction = .right
+        swipeUp.direction = .up
+        swipeDown.direction = .down
+        
         view.addGestureRecognizer(swipeRight)
+        view.addGestureRecognizer(swipeLeft)
+        view.addGestureRecognizer(swipeUp)
+        view.addGestureRecognizer(swipeDown)
     }
     
-    @objc func swipedRight(sender: UISwipeGestureRecognizer) {
-        let motion = self.motionManager.deviceMotion
-        let radians = atan2((motion?.gravity.x)!, (motion?.gravity.y)!) - .pi
-        
-        let degrees = radians * 180.0  / .pi
-        
-        if (-degrees > 45 && -degrees < 125) {
-            self.physicsWorld.gravity.dx = 1.5
-            self.physicsWorld.gravity.dy = 0.0
-            self.player.zRotation = CGFloat(Double.pi/2)
-            print("swipe")
-        }
+    @objc func swipedRight(sender: UISwipeGestureRecognizer, x: CGFloat, y: CGFloat, z: CGFloat) {
+        self.physicsWorld.gravity.dx = 1.5
+        self.physicsWorld.gravity.dy = 0.0
+        self.player.zRotation = CGFloat(Double.pi/2)
+        print("swipe Right")
+    }
+    
+    @objc func swipedLeft(sender: UISwipeGestureRecognizer) {
+        self.physicsWorld.gravity.dx = -1.5
+        self.physicsWorld.gravity.dy = 0.0
+        self.player.zRotation = -CGFloat(Double.pi/2)
+        print("swipe Left")
+    }
+    
+    @objc func swipedUp(sender: UISwipeGestureRecognizer) {
+        self.physicsWorld.gravity.dx = 0.0
+        self.physicsWorld.gravity.dy = 1.5
+        self.player.zRotation = -CGFloat(Double.pi)
+        print("swipe Up")
+    }
+    
+    @objc func swipedDown(sender: UISwipeGestureRecognizer) {
+        self.physicsWorld.gravity.dx = 0.0
+        self.physicsWorld.gravity.dy = -1.5
+        self.player.zRotation = 0.0
+        print("swipe Down")
     }
     
     //
@@ -108,34 +134,6 @@ class GameScene: SKScene {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        //        motionManager.startDeviceMotionUpdates(to: OperationQueue.main) { (motion, error) in
-        let motion = self.motionManager.deviceMotion
-        let radians = atan2((motion?.gravity.x)!, (motion?.gravity.y)!) - .pi
-        
-        let degrees = radians * 180.0  / .pi
-        
-        if (-degrees > 45 && -degrees < 125) {
-            self.physicsWorld.gravity.dx = 0
-            self.physicsWorld.gravity.dy = -1.5
-            self.player.zRotation = 0.0
-            print("1")
-        } else if (-degrees >= 125 && -degrees < 215) {
-            self.physicsWorld.gravity.dx = 1.5
-            self.physicsWorld.gravity.dy = 0
-            self.player.zRotation = CGFloat(Double.pi/2)
-            print("2")
-        } else if (-degrees >= 215 && -degrees < 305) {
-            self.physicsWorld.gravity.dx = 0
-            self.physicsWorld.gravity.dy = 1.5
-            self.player.zRotation = CGFloat(Double.pi)
-            print("3")
-        } else {
-            print("4")
-            self.physicsWorld.gravity.dx = -1.5
-            self.physicsWorld.gravity.dy = 0
-            self.player.zRotation = -CGFloat(Double.pi/2)
-        }
-        //        }
         
     }
     
