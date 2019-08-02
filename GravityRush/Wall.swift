@@ -1,5 +1,5 @@
 //
-//  Hero.swift
+//  Wall.swift
 //  GravityRush
 //
 //  Created by Raul Rodrigues on 8/2/19.
@@ -9,7 +9,7 @@
 import Foundation
 import GameplayKit
 
-final class Hero: GKEntity {
+final class Wall: GKEntity {
     override init() {
         super.init()
     }
