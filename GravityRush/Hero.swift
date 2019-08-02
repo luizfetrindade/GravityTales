@@ -13,11 +13,13 @@ final class Hero: GKEntity {
     override init() {
         super.init()
 
+        let spriteComponent = SpriteComponent(imageNamed: "player1")
+        self.addComponent(spriteComponent)
         
-        let moveComponent = MoveComponent(node: SKNode.init(), timeOffset: 3)
+        let moveComponent = MoveComponent(node: spriteComponent.spriteNode, timeOffset: 3)
         self.addComponent(moveComponent)
         
-        let jumpComponent = JumpComponent(node: SKNode.init(), strength: 2)
+        let jumpComponent = JumpComponent(node: spriteComponent.spriteNode, strength: 2)
         self.addComponent(jumpComponent)
         
     }
