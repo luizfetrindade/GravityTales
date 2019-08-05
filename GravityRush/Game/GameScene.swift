@@ -54,7 +54,11 @@ final class GameScene: SKScene {
         let gosmito = Hero()
         gosmito.component(ofType: SpriteComponent.self)?.spriteNode.position = CGPoint(x: 50, y: 50)
         entityManager.add(entity: gosmito)
+<<<<<<< HEAD
         
+=======
+        print(gosmito.component(ofType: PhysicsComponent.self)?.physicsBody)
+>>>>>>> PhysicsBody
         
     }
         
