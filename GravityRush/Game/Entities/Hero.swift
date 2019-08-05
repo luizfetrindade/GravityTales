@@ -16,6 +16,9 @@ final class Hero: GKEntity {
         let spriteComponent = SpriteComponent(imageNamed: "player1")
         self.addComponent(spriteComponent)
         
+        let rotationComponent = RotationComponent(rotation: 0, spriteComponent: spriteComponent)
+        self.addComponent(rotationComponent)
+        
         let physicsComponent = PhysicsComponent(category: PhysicsCategory.Hero, contact: PhysicsCategory.Enemy, collision: PhysicsCategory.All, spriteComponent: spriteComponent)
         self.addComponent(physicsComponent)
         
@@ -31,7 +34,6 @@ final class Hero: GKEntity {
         
         let jumpComponent = JumpComponent(node: spriteComponent.spriteNode, strength: 2)
         self.addComponent(jumpComponent)
-        
     }
     
     required init?(coder aDecoder: NSCoder) {

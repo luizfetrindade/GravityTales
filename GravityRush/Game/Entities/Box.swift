@@ -19,6 +19,9 @@ final class Box: GKEntity {
         let physicsComponent = PhysicsComponent(category: PhysicsCategory.Wall, contact: PhysicsCategory.None, collision: PhysicsCategory.All, spriteComponent: spriteComponent)
         self.addComponent(physicsComponent)
         
+        let rotationComponent = RotationComponent(rotation: 0, spriteComponent: spriteComponent, physicsComponent: physicsComponent)
+        self.addComponent(rotationComponent)
+        
         let bounceComponent = BounceComponent(restitution: 0.5, physicsComponent: physicsComponent)
         self.addComponent(bounceComponent)
         

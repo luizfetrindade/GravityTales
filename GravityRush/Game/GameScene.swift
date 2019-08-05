@@ -14,12 +14,13 @@ final class GameScene: SKScene {
     
     var lastTime: TimeInterval = 0.0
     
-    var entityManager: EntityManager!
+    lazy var entityManager: EntityManager = EntityManager(scene: self)
 
     override func didMove(to view: SKView) {
         super.didMove(to: view)
         
-        entityManager = EntityManager(scene: self.scene!)
+        scene?.anchorPoint = CGPoint(x: 0, y: 0)
+        
         createWorld()
         
         self.physicsBody = SKPhysicsBody.init(edgeLoopFrom: self.frame)
@@ -41,15 +42,22 @@ final class GameScene: SKScene {
     }
     
     private func createWorld() {
-        // 31.5
+        guard let scene = scene else { fatalError() }
         
-        var accu = CGFloat(0)
-        for _ in 1 ... 10 {
-            let wall = Wall()
-            wall.component(ofType: SpriteComponent.self)?.spriteNode.position.x += accu
-            accu += 31.5
-            entityManager.add(entity: wall)
+        let height: CGFloat = scene.size.height
+        let width: CGFloat = height * (CGFloat(16) / CGFloat(9))
+        
+        let wallHorizontal = Wall()
+        let wallHorizontalWidth = wallHorizontal.component(ofType: SpriteComponent.self)!.spriteNode.size.width
+        let wallHorizontalHeight = wallHorizontal.component(ofType: SpriteComponent.self)!.spriteNode.size.height
+        
+        var horizontalAccu: C = 0
+        
+        while horizontalAccu < (width + wallHorizontalWidth + 10) {
+            <#code#>
         }
+        
+        
         
         let gosmito = Hero()
         gosmito.component(ofType: SpriteComponent.self)?.spriteNode.position = CGPoint(x: 50, y: 50)
