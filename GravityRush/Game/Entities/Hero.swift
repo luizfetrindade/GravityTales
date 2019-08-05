@@ -19,6 +19,9 @@ final class Hero: GKEntity {
         let physicsComponent = PhysicsComponent(category: PhysicsCategory.Hero, contact: PhysicsCategory.Enemy, collision: PhysicsCategory.All, spriteComponent: spriteComponent)
         self.addComponent(physicsComponent)
         
+        let bounceComponent = BounceComponent(restitution: 0.5, physicsComponent: physicsComponent)
+        self.addComponent(bounceComponent)
+        
         let weightComponent = WeightComponent(physicsComponent: physicsComponent)
         self.addComponent(weightComponent)
         
