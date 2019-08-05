@@ -12,6 +12,9 @@ import GameplayKit
 final class Spike: GKEntity {
     override init() {
         super.init()
+        
+        let physiscsComponent = PhysicsComponent(category: PhysicsCategory.Enemy)
+        self.addComponent(physiscsComponent)
     }
     
     required init?(coder aDecoder: NSCoder) {
