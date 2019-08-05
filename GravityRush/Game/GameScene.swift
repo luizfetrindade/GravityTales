@@ -30,13 +30,13 @@ class GameScene: SKScene {
         let playerAnimation: SKAction
         var textures: [SKTexture] = []
         
-        for i in 1...3 {
-            textures.append(SKTexture(imageNamed: "player\(i)"))
+        for i in 1...8 {
+            textures.append(SKTexture(imageNamed: "agachar \(i)"))
         }
         //        textures.append(textures[2])
         //        textures.append(textures[1])
         //        playerAnimation = SKAction.animate(with: textures, timePerFrame: 0.1)
-        playerAnimation = SKAction.animate(with: textures, timePerFrame: 0.2, resize: true, restore: true)
+        playerAnimation = SKAction.animate(with: textures, timePerFrame: 0.1, resize: true, restore: true)
         
         self.physicsBody = SKPhysicsBody.init(edgeLoopFrom: self.frame)
         
