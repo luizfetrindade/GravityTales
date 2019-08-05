@@ -1,22 +1,23 @@
 //
-//  Spike.swift
+//  Exit.swift
 //  GravityRush
 //
-//  Created by Luiz Felipe Trindade on 02/08/19.
+//  Created by Raul Rodrigues on 8/5/19.
 //  Copyright © 2019 Luiz Felipe Trindade. All rights reserved.
 //
 
 import Foundation
 import GameplayKit
 
-final class Spike: GKEntity {
+final class Exit: GKEntity {
     override init() {
         super.init()
         
-        let spriteComponent = SpriteComponent(imageNamed: "player1")
+        //MUDAR SPRITE
+        let spriteComponent = SpriteComponent(imageNamed: "box")
         self.addComponent(spriteComponent)
         
-        let physiscsComponent = PhysicsComponent(category: PhysicsCategory.Enemy, contact: PhysicsCategory.Hero, collision: PhysicsCategory.None, spriteComponent: spriteComponent)
+        let physiscsComponent = PhysicsComponent(category: PhysicsCategory.Exit, contact: PhysicsCategory.Hero, collision: PhysicsCategory.None, spriteComponent: spriteComponent)
         self.addComponent(physiscsComponent)
     }
     

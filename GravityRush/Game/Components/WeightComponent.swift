@@ -10,11 +10,10 @@ import GameplayKit
 
 final class WeightComponent: GKComponent {
     
-    init(node: SKNode) {
+    init(physicsComponent: PhysicsComponent) {
         super.init()
-        node.physicsBody = SKPhysicsBody.init()
-        node.physicsBody?.isDynamic = true
-        node.physicsBody?.affectedByGravity = true
+        physicsComponent.physicsBody.isDynamic = true
+        physicsComponent.physicsBody.affectedByGravity = true
     }
     
     required init?(coder aDecoder: NSCoder) {
