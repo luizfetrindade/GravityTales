@@ -16,7 +16,7 @@ final class Box: GKEntity {
         let spriteComponent = SpriteComponent(imageNamed: "box")
         self.addComponent(spriteComponent)
         
-        let weightComponent = WeightComponent(node: SKNode.init())
+        let weightComponent = WeightComponent(node: spriteComponent.spriteNode)
         self.addComponent(weightComponent)
     }
     
