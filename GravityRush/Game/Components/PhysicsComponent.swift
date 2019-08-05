@@ -26,6 +26,10 @@ final class PhysicsComponent: GKComponent {
         self.physicsBody.categoryBitMask = category
         self.physicsBody.contactTestBitMask = contact
         self.physicsBody.collisionBitMask = collision
+        
+        //Defaults
+        self.physicsBody.restitution = 0.0
+        
         super.init()
     }
     

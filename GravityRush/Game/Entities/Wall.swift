@@ -12,6 +12,12 @@ import GameplayKit
 final class Wall: GKEntity {
     override init() {
         super.init()
+        
+        let spriteComponent = SpriteComponent(imageNamed: "wall")
+        self.addComponent(spriteComponent)
+        
+        let physicsComponent = PhysicsComponent(category: PhysicsCategory.Wall, contact: PhysicsCategory.None, collision: PhysicsCategory.All, spriteComponent: spriteComponent)
+        self.addComponent(physicsComponent)
     }
     
     required init?(coder aDecoder: NSCoder) {
