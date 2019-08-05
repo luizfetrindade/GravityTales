@@ -21,6 +21,14 @@ public struct PhysicsCategory {
 final class PhysicsComponent: GKComponent {
     let physicsBody: SKPhysicsBody
     
+    init(category: UInt32, contact: UInt32, collision: UInt32, spriteComponent: SpriteComponent) {
+        self.physicsBody = SKPhysicsBody(rectangleOf: spriteComponent.spriteNode.frame.size)
+        self.physicsBody.categoryBitMask = category
+        self.physicsBody.contactTestBitMask = contact
+        self.physicsBody.collisionBitMask = collision
+        super.init()
+    }
+    
     init(category: UInt32, contact: UInt32, collision: UInt32, physicsBody: SKPhysicsBody) {
         self.physicsBody = physicsBody
         self.physicsBody.categoryBitMask = category
@@ -30,14 +38,6 @@ final class PhysicsComponent: GKComponent {
         //Defaults
         self.physicsBody.restitution = 0.0
         
-        super.init()
-    }
-    
-    init(category: UInt32, contact: UInt32, collision: UInt32, spriteComponent: SpriteComponent) {
-        self.physicsBody = SKPhysicsBody(rectangleOf: spriteComponent.spriteNode.frame.size)
-        self.physicsBody.categoryBitMask = category
-        self.physicsBody.contactTestBitMask = contact
-        self.physicsBody.collisionBitMask = collision
         super.init()
     }
     

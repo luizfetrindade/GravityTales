@@ -13,10 +13,10 @@ final class EntityManager {
     
     var entities: [GKEntity] = []
     
-    weak var sceneNode: SKNode?
+    weak var scene: SKScene?
     
-    init(scene: SKNode) {
-        self.sceneNode = scene
+    init(scene: SKScene?) {
+        self.scene = scene
     }
     
     func update(with delta: TimeInterval) {
@@ -27,7 +27,7 @@ final class EntityManager {
     
     func add(entity: GKEntity) {
         if let node = entity.component(ofType: SpriteComponent.self)?.spriteNode {
-            sceneNode?.addChild(node)
+            scene?.addChild(node)
         }
         entities.append(entity)
     }
