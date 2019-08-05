@@ -26,18 +26,16 @@ final class PhysicsComponent: GKComponent {
         self.physicsBody.categoryBitMask = category
         self.physicsBody.contactTestBitMask = contact
         self.physicsBody.collisionBitMask = collision
-        super.init()
-    }
-    
-    init(category: UInt32, contact: UInt32, collision: UInt32, physicsBody: SKPhysicsBody) {
-        self.physicsBody = physicsBody
-        self.physicsBody.categoryBitMask = category
-        self.physicsBody.contactTestBitMask = contact
-        self.physicsBody.collisionBitMask = collision
+        
         
         //Defaults
+        self.physicsBody.affectedByGravity = false
         self.physicsBody.restitution = 0.0
+        self.physicsBody.allowsRotation = false
+        self.physicsBody.isDynamic = false
         
+        
+        spriteComponent.spriteNode.physicsBody = self.physicsBody
         super.init()
     }
     
