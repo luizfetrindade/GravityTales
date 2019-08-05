@@ -38,6 +38,28 @@ final class PhysicsComponent: GKComponent {
         spriteComponent.spriteNode.physicsBody = self.physicsBody
         super.init()
     }
+=======
+        
+//         Defaults
+        self.physicsBody.restitution = 0.0
+        
+        
+        spriteComponent.spriteNode.physicsBody = physicsBody
+        super.init()
+    }
+
+//    init(category: UInt32, contact: UInt32, collision: UInt32, physicsBody: SKPhysicsBody) {
+//        self.physicsBody = physicsBody
+//        self.physicsBody.categoryBitMask = category
+//        self.physicsBody.contactTestBitMask = contact
+//        self.physicsBody.collisionBitMask = collision
+//
+//        //Defaults
+//        self.physicsBody.restitution = 0.0
+//
+//        super.init()
+//    }
+>>>>>>> PhysicsBody
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("do not use decoders ever!")
