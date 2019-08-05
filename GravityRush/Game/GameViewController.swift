@@ -25,22 +25,11 @@ class GameViewController: UIViewController {
         
         scene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         view.presentScene(scene)
-
-        createFakeEntities(for: scene)
     }
 }
 
+// MARK:
 extension GameViewController {
     
-    func createFakeEntities(for scene: GameScene) {
-        
-        let hero = Hero()
-        scene.entityManager.add(entity: hero)
-        
-        let box = Box()
-        scene.entityManager.add(entity: box)
     
-        let wall = Wall()
-        scene.entityManager.add(entity: wall)
-    }
 }
