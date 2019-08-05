@@ -16,6 +16,9 @@ final class Exit: GKEntity {
         //MUDAR SPRITE
         let spriteComponent = SpriteComponent(imageNamed: "box")
         self.addComponent(spriteComponent)
+        
+        let physiscsComponent = PhysicsComponent(category: PhysicsCategory.Exit)
+        self.addComponent(physiscsComponent)
     }
     
     required init?(coder aDecoder: NSCoder) {

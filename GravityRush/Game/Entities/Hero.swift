@@ -22,6 +22,8 @@ final class Hero: GKEntity {
         let jumpComponent = JumpComponent(node: spriteComponent.spriteNode, strength: 2)
         self.addComponent(jumpComponent)
         
+        let physiscsComponent = PhysicsComponent(category: PhysicsCategory.Hero)
+        self.addComponent(physiscsComponent)
     }
     
     required init?(coder aDecoder: NSCoder) {

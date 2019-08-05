@@ -18,6 +18,9 @@ final class Box: GKEntity {
         
         let weightComponent = WeightComponent(node: spriteComponent.spriteNode)
         self.addComponent(weightComponent)
+        
+        let physiscsComponent = PhysicsComponent(category: PhysicsCategory.Wall)
+        self.addComponent(physiscsComponent)
     }
     
     required init?(coder aDecoder: NSCoder) {
