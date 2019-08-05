@@ -12,6 +12,7 @@
 		3AA2D43322F89EFA00369119 /* Exit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA2D43222F89EFA00369119 /* Exit.swift */; };
 		3AA2D43522F8A06900369119 /* PhysicsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA2D43422F8A06900369119 /* PhysicsComponent.swift */; };
 		3AA2D43722F8B05A00369119 /* BounceComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA2D43622F8B05A00369119 /* BounceComponent.swift */; };
+		3AA2D43922F8BAB500369119 /* TestScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA2D43822F8BAB500369119 /* TestScene.swift */; };
 		6D504DA522F4F76900EB8878 /* Spike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D504DA422F4F76900EB8878 /* Spike.swift */; };
 		6D504DAA22F4F8FB00EB8878 /* EntityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D504DA922F4F8FB00EB8878 /* EntityManager.swift */; };
 		6D57AF8D22E8EAE7006C7784 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D57AF8C22E8EAE7006C7784 /* AppDelegate.swift */; };
@@ -36,6 +37,7 @@
 		3AA2D43222F89EFA00369119 /* Exit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exit.swift; sourceTree = "<group>"; };
 		3AA2D43422F8A06900369119 /* PhysicsComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsComponent.swift; sourceTree = "<group>"; };
 		3AA2D43622F8B05A00369119 /* BounceComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BounceComponent.swift; sourceTree = "<group>"; };
+		3AA2D43822F8BAB500369119 /* TestScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestScene.swift; sourceTree = "<group>"; };
 		6D504DA422F4F76900EB8878 /* Spike.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spike.swift; sourceTree = "<group>"; };
 		6D504DA922F4F8FB00EB8878 /* EntityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityManager.swift; sourceTree = "<group>"; };
 		6D57AF8922E8EAE7006C7784 /* GravityRush.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GravityRush.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -95,6 +97,7 @@
 				6D57AF8E22E8EAE7006C7784 /* GameScene.sks */,
 				6D57AF9022E8EAE7006C7784 /* Actions.sks */,
 				6D57AF9222E8EAE7006C7784 /* GameScene.swift */,
+				3AA2D43822F8BAB500369119 /* TestScene.swift */,
 				6D504DA922F4F8FB00EB8878 /* EntityManager.swift */,
 				6DDBF73A22F8995A00D1D340 /* Components */,
 				6D504DA722F4F84900EB8878 /* Support */,
@@ -226,6 +229,7 @@
 				6D8BA7C522F8990000295ED0 /* Hero.swift in Sources */,
 				6D57AF9522E8EAE7006C7784 /* GameViewController.swift in Sources */,
 				6DDBF73622F8992700D1D340 /* WeightComponent.swift in Sources */,
+				3AA2D43922F8BAB500369119 /* TestScene.swift in Sources */,
 				6DDBF73722F8992700D1D340 /* SpriteComponent.swift in Sources */,
 				6D57AF8D22E8EAE7006C7784 /* AppDelegate.swift in Sources */,
 				6DDBF73822F8992700D1D340 /* MoveComponent.swift in Sources */,
