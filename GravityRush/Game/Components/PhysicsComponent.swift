@@ -10,17 +10,30 @@ import Foundation
 import GameplayKit
 
 public struct PhysicsCategory {
+    public static let None: UInt32 = 0b0
     public static let Hero: UInt32 = 0b1
     public static let Wall: UInt32 = 0b10
     public static let Exit: UInt32 = 0b100
     public static let Enemy: UInt32  = 0b1000
+    public static let All: UInt32 = UInt32.max
 }
 
 final class PhysicsComponent: GKComponent {
-    let category: UInt32
+    let physicsBody: SKPhysicsBody
     
-    init(category: UInt32) {
-        self.category = category
+    init(category: UInt32, contact: UInt32, collision: UInt32, physicsBody: SKPhysicsBody) {
+        self.physicsBody = physicsBody
+        self.physicsBody.categoryBitMask = category
+        self.physicsBody.contactTestBitMask = contact
+        self.physicsBody.collisionBitMask = collision
+        super.init()
+    }
+    
+    init(category: UInt32, contact: UInt32, collision: UInt32, spriteComponent: SpriteComponent) {
+        self.physicsBody = SKPhysicsBody(rectangleOf: spriteComponent.spriteNode.frame.size)
+        self.physicsBody.categoryBitMask = category
+        self.physicsBody.contactTestBitMask = contact
+        self.physicsBody.collisionBitMask = collision
         super.init()
     }
     

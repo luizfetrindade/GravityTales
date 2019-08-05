@@ -17,7 +17,7 @@ final class Exit: GKEntity {
         let spriteComponent = SpriteComponent(imageNamed: "box")
         self.addComponent(spriteComponent)
         
-        let physiscsComponent = PhysicsComponent(category: PhysicsCategory.Exit)
+        let physiscsComponent = PhysicsComponent(category: PhysicsCategory.Exit, contact: PhysicsCategory.Hero, collision: PhysicsCategory.None, spriteComponent: spriteComponent)
         self.addComponent(physiscsComponent)
     }
     
