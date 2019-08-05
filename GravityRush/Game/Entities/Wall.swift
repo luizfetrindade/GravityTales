@@ -12,9 +12,6 @@ import GameplayKit
 final class Wall: GKEntity {
     override init() {
         super.init()
-        
-        let physiscsComponent = PhysicsComponent(category: PhysicsCategory.Wall)
-        self.addComponent(physiscsComponent)
     }
     
     required init?(coder aDecoder: NSCoder) {

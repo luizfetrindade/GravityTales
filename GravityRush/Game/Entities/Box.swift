@@ -16,11 +16,11 @@ final class Box: GKEntity {
         let spriteComponent = SpriteComponent(imageNamed: "box")
         self.addComponent(spriteComponent)
         
-        let weightComponent = WeightComponent(node: spriteComponent.spriteNode)
-        self.addComponent(weightComponent)
+        let physicsComponent = PhysicsComponent(category: PhysicsCategory.Wall, contact: PhysicsCategory.None, collision: PhysicsCategory.All, spriteComponent: spriteComponent)
+        self.addComponent(physicsComponent)
         
-        let physiscsComponent = PhysicsComponent(category: PhysicsCategory.Wall)
-        self.addComponent(physiscsComponent)
+        let weightComponent = WeightComponent(physicsComponent: physicsComponent)
+        self.addComponent(weightComponent)
     }
     
     required init?(coder aDecoder: NSCoder) {
