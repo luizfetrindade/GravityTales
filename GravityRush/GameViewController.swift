@@ -39,6 +39,8 @@ extension GameViewController {
         
         let box = Box()
         scene.entityManager.add(entity: box)
-    }
     
+        let wall = Wall()
+        scene.entityManager.add(entity: wall)
+    }
 }
