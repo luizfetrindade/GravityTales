@@ -146,6 +146,10 @@ final class GameScene2: SKScene {
         let wall4 = Wall(imageName: "wallHorizontal", hasPhysicsBody: true)
         entityManager.add(entity: wall4)
         wall4.component(ofType: SpriteComponent.self)?.spriteNode.position = CGPoint(x: sceneWidth/2, y: sceneHeight - 140)
+        
+        let spike1 = Spike()
+        entityManager.add(entity: spike1)
+        spike1.component(ofType: SpriteComponent.self)?.spriteNode.position = CGPoint(x: (sceneWidth/2) + (sceneWidth/3), y: 200)
     }
     
     
@@ -193,9 +197,20 @@ extension GameScene2: SKPhysicsContactDelegate {
         var firstBody: SKPhysicsBody
         var secondBody: SKPhysicsBody
         
-        if contact.bodyA.node?.name == "player1" || contact.bodyB.node?.name == "player1" {
+        if contact.bodyA.node?.name == "sphere" || contact.bodyB.node?.name == "sphere" {
             let scene = MenuScene(size: self.view!.bounds.size)
-            scene.isGoingToNextLevel = true
+            scene.congratsLabel.text = "you failed all who trusted in you"
+            scene.startLabel.text = "Try again"
+            scene.scaleMode = .aspectFit
+            scene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+            let transition = SKTransition.crossFade(withDuration: 2.0)
+            self.view?.presentScene(scene, transition: transition)
+            return
+        }
+        else if contact.bodyA.node?.name == "player1" || contact.bodyB.node?.name == "player1" {
+            let scene = MenuScene(size: self.view!.bounds.size)
+            scene.congratsLabel.text = "Congrats dog"
+            scene.startLabel.text = "Next level"
             scene.scaleMode = .aspectFit
             scene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
             let transition = SKTransition.crossFade(withDuration: 2.0)
