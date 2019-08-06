@@ -16,7 +16,7 @@ final class Box: GKEntity {
         let spriteComponent = SpriteComponent(imageName: "box")
         self.addComponent(spriteComponent)
         
-        let physicsComponent = PhysicsComponent(category: PhysicsCategory.Box, contact: PhysicsCategory.None, collision: PhysicsCategory.Wall | PhysicsCategory.Hero | PhysicsCategory.Enemy, spriteComponent: spriteComponent)
+        let physicsComponent = PhysicsComponent(category: PhysicsCategory.Box, contact: PhysicsCategory.None, collision: PhysicsCategory.Box | PhysicsCategory.Wall | PhysicsCategory.Hero | PhysicsCategory.Enemy, spriteComponent: spriteComponent)
         self.addComponent(physicsComponent)
         
         let rotationComponent = RotationComponent(rotation: 0, spriteComponent: spriteComponent, physicsComponent: physicsComponent)
