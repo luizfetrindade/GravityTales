@@ -26,6 +26,7 @@ final class GameScene: SKScene {
         scene?.anchorPoint = CGPoint(x: 0, y: 0)
         
         createWorld()
+        createLevel1()
         
         self.physicsBody = SKPhysicsBody.init(edgeLoopFrom: self.frame)
         
@@ -118,9 +119,26 @@ final class GameScene: SKScene {
         self.gosmito = gosmito
         
         let exit = Exit()
-        exit.component(ofType: SpriteComponent.self)?.spriteNode.position = CGPoint(x: 200, y: 200)
+        exit.component(ofType: SpriteComponent.self)?.spriteNode.position = CGPoint(x: 590, y: 80)
         exit.component(ofType: SpriteComponent.self)?.spriteNode.zPosition = CGFloat(-1)
         entityManager.add(entity: exit)
+    }
+    
+    func createLevel1() {
+        guard let scene = scene else { fatalError() }
+
+        let sceneHeight: CGFloat = scene.size.height
+        let sceneWidth: CGFloat = sceneHeight * (CGFloat(16) / CGFloat(9))
+        
+        var accu: CGFloat = 0
+        for _ in 1 ... 1 {
+            let wall = Wall(imageName: "wallVertical", hasPhysicsBody: true)
+            entityManager.add(entity: wall)
+            wall.component(ofType: SpriteComponent.self)?.spriteNode.position = CGPoint(x: sceneWidth/2, y: accu)
+            accu += wall.component(ofType: SpriteComponent.self)!.spriteNode.size.height
+        }
+        
+        
     }
         
     

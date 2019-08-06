@@ -13,7 +13,7 @@ final class Exit: GKEntity {
     override init() {
         super.init()
         
-        let spriteComponent = SpriteComponent(imageName: "sphere")
+        let spriteComponent = SpriteComponent(imageName: "door")
         self.addComponent(spriteComponent)
         
         let physiscsComponent = PhysicsComponent(category: PhysicsCategory.Exit, contact: PhysicsCategory.Hero, collision: PhysicsCategory.None, spriteComponent: spriteComponent)
