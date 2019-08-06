@@ -89,6 +89,12 @@ final class GameScene: SKScene {
             rightAccu += wallRightHeight
         }
         
+        for _ in 1 ... 10 {
+            let box = Box()
+            box.component(ofType: SpriteComponent.self)?.spriteNode.position = CGPoint(x: 120, y: 80)
+            entityManager.add(entity: box)
+        }
+        
         let gosmito = Hero()
         gosmito.component(ofType: SpriteComponent.self)?.spriteNode.position = CGPoint(x: 80, y: 80)
         entityManager.add(entity: gosmito)
