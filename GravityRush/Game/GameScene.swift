@@ -51,10 +51,13 @@ final class GameScene: SKScene {
         let wallHorizontalWidth = wallHorizontal.component(ofType: SpriteComponent.self)!.spriteNode.size.width
         let wallHorizontalHeight = wallHorizontal.component(ofType: SpriteComponent.self)!.spriteNode.size.height
         
-        var horizontalAccu: C = 0
+        var horizontalAccu: CGFloat = 0
         
         while horizontalAccu < (width + wallHorizontalWidth + 10) {
-            <#code#>
+            let wall = Wall()
+            entityManager.add(entity: wall)
+            wall.component(ofType: SpriteComponent.self)?.spriteNode.position.x = horizontalAccu
+            horizontalAccu += wallHorizontalWidth
         }
         
         
