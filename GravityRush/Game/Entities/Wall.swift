@@ -17,21 +17,15 @@ final class Wall: GKEntity {
         let spriteComponent = SpriteComponent(imageNamed: "wall")
         self.addComponent(spriteComponent)
         
-        let rotationComponent = RotationComponent(rotation: 0, spriteComponent: spriteComponent)
-        self.addComponent(rotationComponent)
-        
         let physicsComponent = PhysicsComponent(category: PhysicsCategory.Wall, contact: PhysicsCategory.None, collision: PhysicsCategory.All, spriteComponent: spriteComponent)
         self.addComponent(physicsComponent)
     }
     
-    init(rotation: CGFloat) {
+    init(imageName: String) {
         super.init()
         
-        let spriteComponent = SpriteComponent(imageNamed: "wall")
+        let spriteComponent = SpriteComponent(imageNamed: imageName)
         self.addComponent(spriteComponent)
-        
-        let rotationComponent = RotationComponent(rotation: rotation, spriteComponent: spriteComponent)
-        self.addComponent(rotationComponent)
         
         let physicsComponent = PhysicsComponent(category: PhysicsCategory.Wall, contact: PhysicsCategory.None, collision: PhysicsCategory.All, spriteComponent: spriteComponent)
         self.addComponent(physicsComponent)
