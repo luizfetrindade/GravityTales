@@ -46,9 +46,9 @@ class MenuScene: SKScene {
         for touch in touches {
             let location = touch.location(in: self)
             if startButton.contains(location) {
-                let scene = GameScene(fileNamed: "GameScene")
+                let scene = GameScene2(size: self.view!.bounds.size)
                 let transition = SKTransition.crossFade(withDuration: 2.0)
-                self.view?.presentScene(scene!, transition: transition)
+                self.view?.presentScene(scene, transition: transition)
                 return
             }
         }
