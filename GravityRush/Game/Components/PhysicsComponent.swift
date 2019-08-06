@@ -23,7 +23,7 @@ final class PhysicsComponent: GKComponent {
     let physicsBody: SKPhysicsBody
     
     init(category: UInt32, contact: UInt32, collision: UInt32, spriteComponent: SpriteComponent) {
-        self.physicsBody = SKPhysicsBody(rectangleOf: spriteComponent.spriteNode.frame.size)
+        self.physicsBody = SKPhysicsBody(rectangleOf: spriteComponent.spriteNode.size)
         self.physicsBody.categoryBitMask = category
         self.physicsBody.contactTestBitMask = contact
         self.physicsBody.collisionBitMask = collision
@@ -34,7 +34,7 @@ final class PhysicsComponent: GKComponent {
         self.physicsBody.restitution = 0.0
         self.physicsBody.allowsRotation = false
         self.physicsBody.isDynamic = false
-        
+        self.physicsBody.usesPreciseCollisionDetection = true
         
         spriteComponent.spriteNode.physicsBody = self.physicsBody
         super.init()
