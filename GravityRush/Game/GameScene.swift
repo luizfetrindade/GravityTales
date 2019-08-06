@@ -62,25 +62,21 @@ final class GameScene: SKScene {
     @objc func swipedRight(sender: UISwipeGestureRecognizer, x: CGFloat, y: CGFloat, z: CGFloat) {
         self.physicsWorld.gravity.dx = 1.5
         self.physicsWorld.gravity.dy = 0.0
-//            self.player.zRotation = CGFloat(Double.pi/2)
     }
     
     @objc func swipedLeft(sender: UISwipeGestureRecognizer) {
         self.physicsWorld.gravity.dx = -1.5
         self.physicsWorld.gravity.dy = 0.0
-//            self.player.zRotation = -CGFloat(Double.pi/2)
     }
     
     @objc func swipedUp(sender: UISwipeGestureRecognizer) {
         self.physicsWorld.gravity.dx = 0.0
         self.physicsWorld.gravity.dy = 1.5
-//            self.player.zRotation = -CGFloat(Double.pi)
     }
     
     @objc func swipedDown(sender: UISwipeGestureRecognizer) {
         self.physicsWorld.gravity.dx = 0.0
         self.physicsWorld.gravity.dy = -1.5
-//            self.player.zRotation = 0.0
     }
 
     

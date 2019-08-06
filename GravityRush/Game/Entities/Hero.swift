@@ -32,6 +32,7 @@ final class Hero: GKEntity {
         let jumpComponent = JumpComponent(node: spriteComponent.spriteNode, strength: 2)
         self.addComponent(jumpComponent)
         
+        let rotationComponent = RotateComponent(node: spriteComponent.spriteNode)
     }
     
     required init?(coder aDecoder: NSCoder) {
