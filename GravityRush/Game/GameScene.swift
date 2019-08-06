@@ -169,7 +169,13 @@ extension GameScene: SKPhysicsContactDelegate {
         var secondBody: SKPhysicsBody
         
         if contact.bodyA.node?.name == "player1" || contact.bodyB.node?.name == "player1" {
-            
+            let scene = MenuScene(size: self.view!.bounds.size)
+            scene.isGoingToNextLevel = true
+            scene.scaleMode = .aspectFit
+            scene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+            let transition = SKTransition.crossFade(withDuration: 2.0)
+            self.view?.presentScene(scene, transition: transition)
+            return
         }
     }
 }

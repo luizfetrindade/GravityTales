@@ -20,7 +20,7 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         
         guard let view = view as? SKView else { return }
-        let scene = GameScene(size: view.bounds.size)
+        let scene = MenuScene(size: view.bounds.size)
         scene.scaleMode = .aspectFit
         
         scene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
