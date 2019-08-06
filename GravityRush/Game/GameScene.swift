@@ -44,29 +44,54 @@ final class GameScene: SKScene {
     private func createWorld() {
         guard let scene = scene else { fatalError() }
         
-        let height: CGFloat = scene.size.height
-        let width: CGFloat = height * (CGFloat(16) / CGFloat(9))
+        let sceneHeight: CGFloat = scene.size.height
+        let sceneWidth: CGFloat = sceneHeight * (CGFloat(16) / CGFloat(9))
         
-        let wallHorizontal = Wall()
-        let wallHorizontalWidth = wallHorizontal.component(ofType: SpriteComponent.self)!.spriteNode.size.width
-        let wallHorizontalHeight = wallHorizontal.component(ofType: SpriteComponent.self)!.spriteNode.size.height
-        
-        var horizontalAccu: CGFloat = 0
-        
-        while horizontalAccu < (width + wallHorizontalWidth + 10) {
-            let wall = Wall()
+        let wallFloor = Wall(imageName: "floor")
+        let wallFloorWidth = wallFloor.component(ofType: SpriteComponent.self)!.spriteNode.size.width
+        var floorAccu: CGFloat = 0
+        while floorAccu < (sceneWidth + wallFloorWidth + 10) {
+            let wall = Wall(imageName: "floor")
             entityManager.add(entity: wall)
-            wall.component(ofType: SpriteComponent.self)?.spriteNode.position.x = horizontalAccu
-            horizontalAccu += wallHorizontalWidth
+            wall.component(ofType: SpriteComponent.self)?.spriteNode.position.x = floorAccu
+            floorAccu += wallFloorWidth
+        }
+
+        let wallCeiling = Wall(imageName: "ceiling")
+        let wallCeilingWidth = wallCeiling.component(ofType: SpriteComponent.self)!.spriteNode.size.width
+        var ceilingAccu: CGFloat = 0
+        while ceilingAccu < (sceneWidth + wallCeilingWidth + 10) {
+            let wall = Wall(imageName: "ceiling")
+            entityManager.add(entity: wall)
+            wall.component(ofType: SpriteComponent.self)?.spriteNode.position.y = sceneHeight
+            wall.component(ofType: SpriteComponent.self)?.spriteNode.position.x = ceilingAccu
+            ceilingAccu += wallCeilingWidth
         }
         
+        let wallLeft = Wall(imageName: "wallLeft")
+        let wallLeftHeight = wallLeft.component(ofType: SpriteComponent.self)!.spriteNode.size.height
+        var leftAccu: CGFloat = 0
+        while leftAccu < (sceneHeight + wallLeftHeight + 10) {
+            let wall = Wall(imageName: "wallLeft")
+            entityManager.add(entity: wall)
+            wall.component(ofType: SpriteComponent.self)?.spriteNode.position.y = leftAccu
+            leftAccu += wallLeftHeight
+        }
         
+        let wallRight = Wall(imageName: "wallRight")
+        let wallRightHeight = wallRight.component(ofType: SpriteComponent.self)!.spriteNode.size.height
+        var rightAccu: CGFloat = 0
+        while rightAccu < (sceneHeight + wallRightHeight + 10) {
+            let wall = Wall(imageName: "wallRight")
+            entityManager.add(entity: wall)
+            wall.component(ofType: SpriteComponent.self)?.spriteNode.position.x = sceneWidth
+            wall.component(ofType: SpriteComponent.self)?.spriteNode.position.y = rightAccu
+            rightAccu += wallRightHeight
+        }
         
         let gosmito = Hero()
-        gosmito.component(ofType: SpriteComponent.self)?.spriteNode.position = CGPoint(x: 50, y: 50)
+        gosmito.component(ofType: SpriteComponent.self)?.spriteNode.position = CGPoint(x: 80, y: 80)
         entityManager.add(entity: gosmito)
-        
-        
     }
         
     
