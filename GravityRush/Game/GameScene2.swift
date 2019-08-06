@@ -10,17 +10,17 @@ import SpriteKit
 import GameplayKit
 import CoreMotion
 
-final class GameScene: SKScene {
+final class GameScene2: SKScene {
     
     var lastTime: TimeInterval = 0.0
     
     lazy var entityManager: EntityManager = EntityManager(scene: self)
     
     var gosmito: Hero?
-
+    
     override func didMove(to view: SKView) {
         super.didMove(to: view)
-//        self.view?.showsPhysics = true
+        //        self.view?.showsPhysics = true
         physicsWorld.contactDelegate = self
         
         scene?.anchorPoint = CGPoint(x: 0, y: 0)
@@ -57,61 +57,61 @@ final class GameScene: SKScene {
         entityManager.add(entity: wallFloor)
         wallFloor.component(ofType: SpriteComponent.self)?.spriteNode.position = CGPoint(x: sceneWidth/2, y: 0)
         
-//        let wallFloorWidth = wallFloor.component(ofType: SpriteComponent.self)!.spriteNode.size.width
-//        var floorAccu: CGFloat = 0
-//        while floorAccu < (sceneWidth + wallFloorWidth + 10) {
-//            let wall = Wall(imageName: "floor", hasPhysicsBody: false)
-//            entityManager.add(entity: wall)
-//            wall.component(ofType: SpriteComponent.self)?.spriteNode.position.x = floorAccu
-//            floorAccu += wallFloorWidth
-//        }
-
+        //        let wallFloorWidth = wallFloor.component(ofType: SpriteComponent.self)!.spriteNode.size.width
+        //        var floorAccu: CGFloat = 0
+        //        while floorAccu < (sceneWidth + wallFloorWidth + 10) {
+        //            let wall = Wall(imageName: "floor", hasPhysicsBody: false)
+        //            entityManager.add(entity: wall)
+        //            wall.component(ofType: SpriteComponent.self)?.spriteNode.position.x = floorAccu
+        //            floorAccu += wallFloorWidth
+        //        }
+        
         let wallCeiling = Wall(imageName: "boundaryTopWall", hasPhysicsBody: true)
         entityManager.add(entity: wallCeiling)
         wallCeiling.component(ofType: SpriteComponent.self)?.spriteNode.position = CGPoint(x: sceneWidth/2, y: sceneHeight)
         
-//        let wallCeilingWidth = wallCeiling.component(ofType: SpriteComponent.self)!.spriteNode.size.width
-//        var ceilingAccu: CGFloat = 0
-//        while ceilingAccu < (sceneWidth + wallCeilingWidth + 10) {
-//            let wall = Wall(imageName: "ceiling", hasPhysicsBody: false)
-//            entityManager.add(entity: wall)
-//            wall.component(ofType: SpriteComponent.self)?.spriteNode.position.y = sceneHeight
-//            wall.component(ofType: SpriteComponent.self)?.spriteNode.position.x = ceilingAccu
-//            ceilingAccu += wallCeilingWidth
-//        }
+        //        let wallCeilingWidth = wallCeiling.component(ofType: SpriteComponent.self)!.spriteNode.size.width
+        //        var ceilingAccu: CGFloat = 0
+        //        while ceilingAccu < (sceneWidth + wallCeilingWidth + 10) {
+        //            let wall = Wall(imageName: "ceiling", hasPhysicsBody: false)
+        //            entityManager.add(entity: wall)
+        //            wall.component(ofType: SpriteComponent.self)?.spriteNode.position.y = sceneHeight
+        //            wall.component(ofType: SpriteComponent.self)?.spriteNode.position.x = ceilingAccu
+        //            ceilingAccu += wallCeilingWidth
+        //        }
         
         let wallLeft = Wall(imageName: "boundaryLeftWall", hasPhysicsBody: true)
         entityManager.add(entity: wallLeft)
         wallLeft.component(ofType: SpriteComponent.self)?.spriteNode.position = CGPoint(x: 0, y: sceneHeight/2)
         
-//        let wallLeftHeight = wallLeft.component(ofType: SpriteComponent.self)!.spriteNode.size.height
-//        var leftAccu: CGFloat = 0
-//        while leftAccu < (sceneHeight + wallLeftHeight + 10) {
-//            let wall = Wall(imageName: "wallLeft", hasPhysicsBody: false)
-//            entityManager.add(entity: wall)
-//            wall.component(ofType: SpriteComponent.self)?.spriteNode.position.y = leftAccu
-//            leftAccu += wallLeftHeight
-//        }
-
+        //        let wallLeftHeight = wallLeft.component(ofType: SpriteComponent.self)!.spriteNode.size.height
+        //        var leftAccu: CGFloat = 0
+        //        while leftAccu < (sceneHeight + wallLeftHeight + 10) {
+        //            let wall = Wall(imageName: "wallLeft", hasPhysicsBody: false)
+        //            entityManager.add(entity: wall)
+        //            wall.component(ofType: SpriteComponent.self)?.spriteNode.position.y = leftAccu
+        //            leftAccu += wallLeftHeight
+        //        }
+        
         let wallRight = Wall(imageName: "boundaryRightWall", hasPhysicsBody: true)
         entityManager.add(entity: wallRight)
         wallRight.component(ofType: SpriteComponent.self)?.spriteNode.position = CGPoint(x: sceneWidth, y: sceneHeight/2)
         
-//        let wallRightHeight = wallRight.component(ofType: SpriteComponent.self)!.spriteNode.size.height
-//        var rightAccu: CGFloat = 0
-//        while rightAccu < (sceneHeight + wallRightHeight + 10) {
-//            let wall = Wall(imageName: "wallRight", hasPhysicsBody: false)
-//            entityManager.add(entity: wall)
-//            wall.component(ofType: SpriteComponent.self)?.spriteNode.position.x = sceneWidth
-//            wall.component(ofType: SpriteComponent.self)?.spriteNode.position.y = rightAccu
-//            rightAccu += wallRightHeight
-//        }
+        //        let wallRightHeight = wallRight.component(ofType: SpriteComponent.self)!.spriteNode.size.height
+        //        var rightAccu: CGFloat = 0
+        //        while rightAccu < (sceneHeight + wallRightHeight + 10) {
+        //            let wall = Wall(imageName: "wallRight", hasPhysicsBody: false)
+        //            entityManager.add(entity: wall)
+        //            wall.component(ofType: SpriteComponent.self)?.spriteNode.position.x = sceneWidth
+        //            wall.component(ofType: SpriteComponent.self)?.spriteNode.position.y = rightAccu
+        //            rightAccu += wallRightHeight
+        //        }
         
-//        for _ in 1 ... 15 {
-//            let box = Box()
-//            box.component(ofType: SpriteComponent.self)?.spriteNode.position = CGPoint(x: 120, y: 80)
-//            entityManager.add(entity: box)
-//        }
+        //        for _ in 1 ... 15 {
+        //            let box = Box()
+        //            box.component(ofType: SpriteComponent.self)?.spriteNode.position = CGPoint(x: 120, y: 80)
+        //            entityManager.add(entity: box)
+        //        }
         
         let gosmito = Hero()
         gosmito.component(ofType: SpriteComponent.self)?.spriteNode.position = CGPoint(x: 80, y: 80)
@@ -126,7 +126,7 @@ final class GameScene: SKScene {
     
     func createLevel1() {
         guard let scene = scene else { fatalError() }
-
+        
         let sceneHeight: CGFloat = scene.size.height
         let sceneWidth: CGFloat = sceneHeight * (CGFloat(16) / CGFloat(9))
         
@@ -140,7 +140,7 @@ final class GameScene: SKScene {
         
         
     }
-        
+    
     
     @objc func swipedRight(sender: UISwipeGestureRecognizer, x: CGFloat, y: CGFloat, z: CGFloat) {
         self.physicsWorld.gravity.dx = 1.5
@@ -152,23 +152,23 @@ final class GameScene: SKScene {
         self.physicsWorld.gravity.dx = -1.5
         self.physicsWorld.gravity.dy = 0.0
         gosmito?.component(ofType: RotationComponent.self)?.rotate(direction: "left")
-
+        
     }
     
     @objc func swipedUp(sender: UISwipeGestureRecognizer) {
         self.physicsWorld.gravity.dx = 0.0
         self.physicsWorld.gravity.dy = 1.5
         gosmito?.component(ofType: RotationComponent.self)?.rotate(direction: "up")
-
+        
     }
     
     @objc func swipedDown(sender: UISwipeGestureRecognizer) {
         self.physicsWorld.gravity.dx = 0.0
         self.physicsWorld.gravity.dy = -1.5
         gosmito?.component(ofType: RotationComponent.self)?.rotate(direction: "down")
-
+        
     }
-
+    
     
     override func update(_ currentTime: TimeInterval) {
         if lastTime != 0.0 { entityManager.update(with: currentTime - lastTime) }
@@ -181,7 +181,7 @@ final class GameScene: SKScene {
     
 }
 
-extension GameScene: SKPhysicsContactDelegate {
+extension GameScene2: SKPhysicsContactDelegate {
     func didBegin(_ contact: SKPhysicsContact) {
         var firstBody: SKPhysicsBody
         var secondBody: SKPhysicsBody
