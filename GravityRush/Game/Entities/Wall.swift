@@ -10,21 +10,10 @@ import Foundation
 import GameplayKit
 
 final class Wall: GKEntity {
-    
-    override init() {
-        super.init()
-        
-        let spriteComponent = SpriteComponent(imageNamed: "wall")
-        self.addComponent(spriteComponent)
-        
-        let physicsComponent = PhysicsComponent(category: PhysicsCategory.Wall, contact: PhysicsCategory.None, collision: PhysicsCategory.All, spriteComponent: spriteComponent)
-        self.addComponent(physicsComponent)
-    }
-    
     init(imageName: String) {
         super.init()
         
-        let spriteComponent = SpriteComponent(imageNamed: imageName)
+        let spriteComponent = SpriteComponent(imageName: imageName)
         self.addComponent(spriteComponent)
         
         let physicsComponent = PhysicsComponent(category: PhysicsCategory.Wall, contact: PhysicsCategory.None, collision: PhysicsCategory.All, spriteComponent: spriteComponent)

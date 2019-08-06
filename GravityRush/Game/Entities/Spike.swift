@@ -13,7 +13,7 @@ final class Spike: GKEntity {
     override init() {
         super.init()
         
-        let spriteComponent = SpriteComponent(imageNamed: "player1")
+        let spriteComponent = SpriteComponent(imageName: "player1")
         self.addComponent(spriteComponent)
         
         let physiscsComponent = PhysicsComponent(category: PhysicsCategory.Enemy, contact: PhysicsCategory.Hero, collision: PhysicsCategory.None, spriteComponent: spriteComponent)

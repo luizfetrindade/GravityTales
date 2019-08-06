@@ -13,8 +13,9 @@ final class SpriteComponent: GKComponent {
     
     var spriteNode: SKSpriteNode
     
-    init(imageNamed imageName: String) {
+    init(imageName: String) {
         spriteNode = SKSpriteNode(imageNamed: imageName)
+        spriteNode.name = imageName
         spriteNode.yScale = defaultScale
         spriteNode.xScale = defaultScale
         super.init()

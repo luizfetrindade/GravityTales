@@ -19,6 +19,8 @@ final class GameScene: SKScene {
     override func didMove(to view: SKView) {
         super.didMove(to: view)
         
+        physicsWorld.contactDelegate = self
+        
         scene?.anchorPoint = CGPoint(x: 0, y: 0)
         
         createWorld()
@@ -39,6 +41,8 @@ final class GameScene: SKScene {
         view.addGestureRecognizer(swipeLeft)
         view.addGestureRecognizer(swipeUp)
         view.addGestureRecognizer(swipeDown)
+        
+        checkPhysics()
     }
     
     private func createWorld() {
@@ -89,7 +93,7 @@ final class GameScene: SKScene {
             rightAccu += wallRightHeight
         }
         
-        for _ in 1 ... 10 {
+        for _ in 1 ... 1 {
             let box = Box()
             box.component(ofType: SpriteComponent.self)?.spriteNode.position = CGPoint(x: 120, y: 80)
             entityManager.add(entity: box)
@@ -98,6 +102,11 @@ final class GameScene: SKScene {
         let gosmito = Hero()
         gosmito.component(ofType: SpriteComponent.self)?.spriteNode.position = CGPoint(x: 80, y: 80)
         entityManager.add(entity: gosmito)
+        
+        let exit = Exit()
+        exit.component(ofType: SpriteComponent.self)?.spriteNode.position = CGPoint(x: 200, y: 200)
+        exit.component(ofType: SpriteComponent.self)?.spriteNode.zPosition = CGFloat(-1)
+        entityManager.add(entity: exit)
     }
         
     
@@ -138,23 +147,56 @@ extension GameScene: SKPhysicsContactDelegate {
         var firstBody: SKPhysicsBody
         var secondBody: SKPhysicsBody
         
-        if contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask {
-            firstBody = contact.bodyA
-            secondBody = contact.bodyB
-        } else {
-            firstBody = contact.bodyB
-            secondBody = contact.bodyA
+        if contact.bodyA.node?.name == "player1" || contact.bodyB.node?.name == "player1" {
+            print("\n\n\n\n====================================================================================")
+            print("hero contact")
+            checkPhysics()
+        }
+    }
+}
+
+extension GameScene {
+    func checkPhysics() {
+        
+        // Create an array of all the nodes with physicsBodies
+        var physicsNodes = [SKNode]()
+        
+        //Get all physics bodies
+        enumerateChildNodes(withName: "//.") { node, _ in
+            if let _ = node.physicsBody {
+                physicsNodes.append(node)
+            } else {
+                print("\(node.name) does not have a physics body so cannot collide or be involved in contacts.")
+            }
         }
         
-        
-        
-//        // 2
-//        if ((firstBody.categoryBitMask & PhysicsCategory.monster != 0) &&
-//            (secondBody.categoryBitMask & PhysicsCategory.projectile != 0)) {
-//            if let monster = firstBody.node as? SKSpriteNode,
-//                let projectile = secondBody.node as? SKSpriteNode {
-//                projectileDidCollideWithMonster(projectile: projectile, monster: monster)
-//            }
-//        }
+        //For each node, check it's category against every other node's collion and contctTest bit mask
+        for node in physicsNodes {
+            let category = node.physicsBody!.categoryBitMask
+            // Identify the node by its category if the name is blank
+            let name = node.name != nil ? node.name : "Category \(category)"
+            let collisionMask = node.physicsBody!.collisionBitMask
+            let contactMask = node.physicsBody!.contactTestBitMask
+            
+            // If all bits of the collisonmask set, just say it collides with everything.
+            if collisionMask == UInt32.max {
+                print("\(name) collides with everything")
+            }
+            
+            for otherNode in physicsNodes {
+                if (node != otherNode) && (node.physicsBody?.isDynamic == true) {
+                    let otherCategory = otherNode.physicsBody!.categoryBitMask
+                    // Identify the node by its category if the name is blank
+                    let otherName = otherNode.name != nil ? otherNode.name : "Category \(otherCategory)"
+                    
+                    // If the collisonmask and category match, they will collide
+                    if ((collisionMask & otherCategory) != 0) && (collisionMask != UInt32.max) {
+                        print("\(name) collides with \(otherName)")
+                    }
+                    // If the contactMAsk and category match, they will contact
+                    if (contactMask & otherCategory) != 0 {print("\(name) notifies when contacting \(otherName)")}
+                }
+            }
+        }
     }
 }

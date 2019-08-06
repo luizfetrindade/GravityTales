@@ -13,16 +13,16 @@ final class Box: GKEntity {
     override init() {
         super.init()
         
-        let spriteComponent = SpriteComponent(imageNamed: "box")
+        let spriteComponent = SpriteComponent(imageName: "box")
         self.addComponent(spriteComponent)
         
-        let physicsComponent = PhysicsComponent(category: PhysicsCategory.Wall, contact: PhysicsCategory.None, collision: PhysicsCategory.All, spriteComponent: spriteComponent)
+        let physicsComponent = PhysicsComponent(category: PhysicsCategory.Box, contact: PhysicsCategory.None, collision: PhysicsCategory.Wall | PhysicsCategory.Hero | PhysicsCategory.Enemy, spriteComponent: spriteComponent)
         self.addComponent(physicsComponent)
         
         let rotationComponent = RotationComponent(rotation: 0, spriteComponent: spriteComponent, physicsComponent: physicsComponent)
         self.addComponent(rotationComponent)
         
-        let bounceComponent = BounceComponent(restitution: 0.5, physicsComponent: physicsComponent)
+        let bounceComponent = BounceComponent(restitution: 0.3, physicsComponent: physicsComponent)
         self.addComponent(bounceComponent)
         
         let weightComponent = WeightComponent(physicsComponent: physicsComponent)
