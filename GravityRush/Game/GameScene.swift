@@ -8,7 +8,6 @@
 
 import SpriteKit
 import GameplayKit
-import CoreMotion
 
 final class GameScene: SKScene {
     
@@ -215,10 +214,10 @@ final class GameScene: SKScene {
             } else {
                 gosmito?.component(ofType: MoveComponent.self)?.move(timeOffset: timeOffset, direction: "left")
             }
-        } else if pos.y < 150 {
-            gosmito?.component(ofType: MoveComponent.self)?.move(timeOffset: timeOffset, direction: "right")
+        } else if pos.y < 200 {
+            gosmito?.component(ofType: MoveComponent.self)?.move(timeOffset: timeOffset, direction: "down")
         } else {
-            gosmito?.component(ofType: MoveComponent.self)?.move(timeOffset: timeOffset, direction: "left")
+            gosmito?.component(ofType: MoveComponent.self)?.move(timeOffset: timeOffset, direction: "up")
         }
     }
 }

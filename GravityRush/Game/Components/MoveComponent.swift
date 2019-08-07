@@ -28,9 +28,13 @@ final class MoveComponent: GKComponent {
             node.position.x += CGFloat(80 * timeOffset)
         } else if direction == "right" {
             node.position.x -= CGFloat(80 * timeOffset)
-        } else {
+        } else if direction == "up" {
+            node.position.y += CGFloat(80 * timeOffset)
+        } else if direction == "down" {
+            node.position.y -= CGFloat(80 * timeOffset)
+        }
+        else {
             fatalError("Direction is wrong")
         }
-//        node.position = pos
     }
 }
