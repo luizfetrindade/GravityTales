@@ -10,10 +10,10 @@ import Foundation
 import GameplayKit
 
 final class Spike: GKEntity {
-    override init() {
+    init(imageName: String) {
         super.init()
         
-        let spriteComponent = SpriteComponent(imageName: "sphere")
+        let spriteComponent = SpriteComponent(imageName: imageName)
         self.addComponent(spriteComponent)
         
         let physiscsComponent = PhysicsComponent(category: PhysicsCategory.Enemy, contact: PhysicsCategory.Hero, collision: PhysicsCategory.None, spriteComponent: spriteComponent)
