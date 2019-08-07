@@ -23,6 +23,9 @@ class GameViewController: UIViewController {
         let scene = MenuScene(size: view.bounds.size)
         scene.scaleMode = .aspectFit
         
+        universalUnit = view.bounds.height / CGFloat(9)
+        print(universalUnit)
+        
         scene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         view.presentScene(scene)
     }

@@ -10,3 +10,8 @@ import Foundation
 import CoreGraphics
 
 public let defaultScale: CGFloat = 4
+public var universalUnit: CGFloat = 0
+
+func universalUnit(_ mult: CGFloat) -> CGFloat {
+    return universalUnit * mult
+}
