@@ -31,5 +31,6 @@ final class MoveComponent: GKComponent {
         } else {
             fatalError("Direction is wrong")
         }
+//        node.position = pos
     }
 }
