@@ -30,6 +30,30 @@ final class GameScene3: GameScene {
         entityManager.add(entity: wall_8)
         wall_8.component(ofType: SpriteComponent.self)?.spriteNode.position = CGPoint(x: universalUnit(6), y: universalUnit(1))
         
+        let wall_14 = Wall(imageName: "wallSection", hasPhysicsBody: true)
+        entityManager.add(entity: wall_14)
+        wall_14.component(ofType: SpriteComponent.self)?.spriteNode.position = CGPoint(x: universalUnit(7), y: universalUnit(1))
+        
+        let wall_15 = Wall(imageName: "wallSection", hasPhysicsBody: true)
+        entityManager.add(entity: wall_15)
+        wall_15.component(ofType: SpriteComponent.self)?.spriteNode.position = CGPoint(x: universalUnit(7), y: universalUnit(2))
+
+        let wall_16 = Wall(imageName: "wallSection", hasPhysicsBody: true)
+        entityManager.add(entity: wall_16)
+        wall_16.component(ofType: SpriteComponent.self)?.spriteNode.position = CGPoint(x: universalUnit(8), y: universalUnit(1))
+        
+        let wall_17 = Wall(imageName: "wallSection", hasPhysicsBody: true)
+        entityManager.add(entity: wall_17)
+        wall_17.component(ofType: SpriteComponent.self)?.spriteNode.position = CGPoint(x: universalUnit(8), y: universalUnit(2))
+        
+        let wall_18 = Wall(imageName: "wallSection", hasPhysicsBody: true)
+        entityManager.add(entity: wall_18)
+        wall_18.component(ofType: SpriteComponent.self)?.spriteNode.position = CGPoint(x: universalUnit(11), y: universalUnit(3))
+        
+        let wall_19 = Wall(imageName: "wallSection", hasPhysicsBody: true)
+        entityManager.add(entity: wall_19)
+        wall_19.component(ofType: SpriteComponent.self)?.spriteNode.position = CGPoint(x: universalUnit(11), y: universalUnit(2.5))
+        
         let wall_4 = Wall(imageName: "wallSection", hasPhysicsBody: true)
         entityManager.add(entity: wall_4)
         wall_4.component(ofType: SpriteComponent.self)?.spriteNode.position = CGPoint(x: universalUnit(7), y: universalUnit(3))
@@ -66,7 +90,7 @@ final class GameScene3: GameScene {
         entityManager.add(entity: wall_13)
         wall_13.component(ofType: SpriteComponent.self)?.spriteNode.position = CGPoint(x: universalUnit(11), y: universalUnit(6))
         
-        for _ in 1 ... 2 {
+        for _ in 1 ... 1 {
             let box = Box()
             entityManager.add(entity: box)
             box.component(ofType: SpriteComponent.self)?.spriteNode.position = CGPoint(x: universalUnit(11), y: universalUnit(7.5))

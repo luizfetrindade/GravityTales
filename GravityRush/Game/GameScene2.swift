@@ -30,12 +30,24 @@ final class GameScene2: GameScene {
         entityManager.add(entity: wall3)
         wall3.component(ofType: SpriteComponent.self)?.spriteNode.position = CGPoint(x: sceneWidth/2, y: 140)
         
+        let spikeUp1 = Spike(imageName: "spikesPUP")
+        entityManager.add(entity: spikeUp1)
+        spikeUp1.component(ofType: SpriteComponent.self)?.spriteNode.position = CGPoint(x: sceneWidth/2 - spikeUp1.component(ofType: SpriteComponent.self)!.spriteNode.size.width, y: 140 + 15)
+        
+        let spikeUp2 = Spike(imageName: "spikesPUP")
+        entityManager.add(entity: spikeUp2)
+        spikeUp2.component(ofType: SpriteComponent.self)?.spriteNode.position = CGPoint(x: sceneWidth/2 + spikeUp2.component(ofType: SpriteComponent.self)!.spriteNode.size.width, y: 140 + 15)
+        
         let wall4 = Wall(imageName: "wallHorizontal", hasPhysicsBody: true)
         entityManager.add(entity: wall4)
         wall4.component(ofType: SpriteComponent.self)?.spriteNode.position = CGPoint(x: sceneWidth/2, y: sceneHeight - 140)
         
-        let spike1 = Spike()
-        entityManager.add(entity: spike1)
-        spike1.component(ofType: SpriteComponent.self)?.spriteNode.position = CGPoint(x: (sceneWidth/2) + (sceneWidth/3), y: 200)
+        let spikeDown1 = Spike(imageName: "spikesPDOWN")
+        entityManager.add(entity: spikeDown1)
+        spikeDown1.component(ofType: SpriteComponent.self)?.spriteNode.position = CGPoint(x: sceneWidth/2 - spikeDown1.component(ofType: SpriteComponent.self)!.spriteNode.size.width, y: sceneHeight - 140 - 15)
+        
+        let spikeDown2 = Spike(imageName: "spikesPDOWN")
+        entityManager.add(entity: spikeDown2)
+        spikeDown2.component(ofType: SpriteComponent.self)?.spriteNode.position = CGPoint(x: sceneWidth/2 + spikeDown2.component(ofType: SpriteComponent.self)!.spriteNode.size.width, y: sceneHeight - 140 - 15)
     }
 }

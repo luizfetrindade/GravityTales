@@ -119,7 +119,7 @@ class GameScene: SKScene {
         self.gosmito = gosmito
         
         let exit = Exit()
-        exit.component(ofType: SpriteComponent.self)?.spriteNode.position = CGPoint(x: 590, y: 80)
+        exit.component(ofType: SpriteComponent.self)?.spriteNode.position = CGPoint(x: 660, y: 80)
         exit.component(ofType: SpriteComponent.self)?.spriteNode.zPosition = CGFloat(-1)
         entityManager.add(entity: exit)
     }

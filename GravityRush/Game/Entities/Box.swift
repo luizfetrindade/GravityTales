@@ -22,7 +22,7 @@ final class Box: GKEntity {
         let rotationComponent = RotationComponent(rotation: 0, spriteComponent: spriteComponent, physicsComponent: physicsComponent)
         self.addComponent(rotationComponent)
         
-        let bounceComponent = BounceComponent(restitution: 0.3, physicsComponent: physicsComponent)
+        let bounceComponent = BounceComponent(restitution: 0.1, physicsComponent: physicsComponent)
         self.addComponent(bounceComponent)
         
         let weightComponent = WeightComponent(physicsComponent: physicsComponent)
