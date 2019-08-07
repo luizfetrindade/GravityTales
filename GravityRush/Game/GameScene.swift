@@ -53,6 +53,12 @@ class GameScene: SKScene {
         let sceneHeight: CGFloat = scene.size.height
         let sceneWidth: CGFloat = sceneHeight * (CGFloat(16) / CGFloat(9))
         
+        let offset = ((scene.size.width - sceneWidth) / 2) / scene.size.width
+        
+        if offset > 0 {
+            scene.anchorPoint = CGPoint(x: offset, y: 0)
+        }
+        
         let wallFloor = Wall(imageName: "boundaryBottomWall", hasPhysicsBody: true)
         entityManager.add(entity: wallFloor)
         wallFloor.component(ofType: SpriteComponent.self)?.spriteNode.position = CGPoint(x: sceneWidth/2, y: 0)
