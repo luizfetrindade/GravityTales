@@ -10,7 +10,7 @@ import SpriteKit
 import GameplayKit
 import CoreMotion
 
-final class GameScene: SKScene {
+class GameScene: SKScene {
     
     var lastTime: TimeInterval = 0.0
     
@@ -107,12 +107,6 @@ final class GameScene: SKScene {
 //            rightAccu += wallRightHeight
 //        }
         
-//        for _ in 1 ... 15 {
-//            let box = Box()
-//            box.component(ofType: SpriteComponent.self)?.spriteNode.position = CGPoint(x: 120, y: 80)
-//            entityManager.add(entity: box)
-//        }
-        
         let gosmito = Hero()
         gosmito.component(ofType: SpriteComponent.self)?.spriteNode.position = CGPoint(x: 80, y: 80)
         entityManager.add(entity: gosmito)
@@ -124,8 +118,14 @@ final class GameScene: SKScene {
         entityManager.add(entity: exit)
     }
     
-    func createLevel() {
+    public func createLevel() {
         guard let scene = scene else { fatalError() }
+        
+        for _ in 1 ... 15 {
+            let box = Box()
+            box.component(ofType: SpriteComponent.self)?.spriteNode.position = CGPoint(x: 120, y: 80)
+            entityManager.add(entity: box)
+        }
 
         let sceneHeight: CGFloat = scene.size.height
         let sceneWidth: CGFloat = sceneHeight * (CGFloat(16) / CGFloat(9))
