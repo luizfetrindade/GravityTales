@@ -9,7 +9,7 @@
 import SpriteKit
 import GameplayKit
 
-final class GameScene: SKScene {
+class GameScene: SKScene {
     
     var lastTime: TimeInterval = 0.0
     
@@ -63,8 +63,22 @@ final class GameScene: SKScene {
     private func createWorld() {
         guard let scene = scene else { fatalError() }
         
+        scene.backgroundColor = #colorLiteral(red: 0.4391688704, green: 0.4392459095, blue: 0.3695387244, alpha: 1)
+        
+//        let background = SKSpriteNode(imageNamed: "background")
+//        background.anchorPoint = CGPoint(x: 0, y: 0)
+//        background.position = CGPoint(x: 0, y: 0)
+//        background.zPosition = CGFloat(-1)
+//        scene.addChild(background)
+        
         let sceneHeight: CGFloat = scene.size.height
         let sceneWidth: CGFloat = sceneHeight * (CGFloat(16) / CGFloat(9))
+        
+        let offset = ((scene.size.width - sceneWidth) / 2) / scene.size.width
+        
+        if offset > 0 {
+            scene.anchorPoint = CGPoint(x: offset, y: 0)
+        }
         
         let wallFloor = Wall(imageName: "boundaryBottomWall", hasPhysicsBody: true)
         entityManager.add(entity: wallFloor)
@@ -119,33 +133,35 @@ final class GameScene: SKScene {
         //            wall.component(ofType: SpriteComponent.self)?.spriteNode.position.y = rightAccu
         //            rightAccu += wallRightHeight
         //        }
-        
-        //        for _ in 1 ... 15 {
-        //            let box = Box()
-        //            box.component(ofType: SpriteComponent.self)?.spriteNode.position = CGPoint(x: 120, y: 80)
-        //            entityManager.add(entity: box)
-        //        }
-        
         let gosmito = Hero()
         gosmito.component(ofType: SpriteComponent.self)?.spriteNode.position = CGPoint(x: 80, y: 80)
         entityManager.add(entity: gosmito)
         self.gosmito = gosmito
         
-        let exit = Exit()
-        exit.component(ofType: SpriteComponent.self)?.spriteNode.position = CGPoint(x: 590, y: 80)
-        exit.component(ofType: SpriteComponent.self)?.spriteNode.zPosition = CGFloat(-1)
-        entityManager.add(entity: exit)
+        
     }
     
-    func createLevel() {
+    public func createLevel() {
         guard let scene = scene else { fatalError() }
-        
+
+//        for _ in 1 ... 15 {
+//            let box = Box()
+//            box.component(ofType: SpriteComponent.self)?.spriteNode.position = CGPoint(x: 120, y: 80)
+//            entityManager.add(entity: box)
+//        }
+
         let sceneHeight: CGFloat = scene.size.height
         let sceneWidth: CGFloat = sceneHeight * (CGFloat(16) / CGFloat(9))
         
         let wall = Wall(imageName: "wallVertical", hasPhysicsBody: true)
         entityManager.add(entity: wall)
         wall.component(ofType: SpriteComponent.self)?.spriteNode.position = CGPoint(x: sceneWidth/2, y: wall.component(ofType: SpriteComponent.self)!.spriteNode.size.height/2)
+
+        
+        let exit = Exit()
+        exit.component(ofType: SpriteComponent.self)?.spriteNode.position = CGPoint(x: universalUnit(14.5), y: universalUnit(1.5))
+        exit.component(ofType: SpriteComponent.self)?.spriteNode.zPosition = CGFloat(-0.999)
+        entityManager.add(entity: exit)
     }
     
 //    @objc func longPressed(sender: UILongPressGestureRecognizer) {
@@ -268,10 +284,10 @@ extension GameScene: SKPhysicsContactDelegate {
         var firstBody: SKPhysicsBody
         var secondBody: SKPhysicsBody
         
-        if contact.bodyA.node?.name == "sphere" || contact.bodyB.node?.name == "sphere" {
+        if contact.bodyA.node?.name == "spikes" || contact.bodyB.node?.name == "spikes" {
             let scene = MenuScene(size: self.view!.bounds.size)
             scene.congratsLabel.text = "you failed all who trusted in you"
-            scene.startLabel.text = "Try again"
+            scene.startLabel.text = "Try level 1 again"
             scene.scaleMode = .aspectFit
             scene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
             let transition = SKTransition.crossFade(withDuration: 2.0)
@@ -281,7 +297,7 @@ extension GameScene: SKPhysicsContactDelegate {
         else if contact.bodyA.node?.name == "player1" || contact.bodyB.node?.name == "player1" {
             let scene = MenuScene(size: self.view!.bounds.size)
             scene.congratsLabel.text = "Congrats dog"
-            scene.startLabel.text = "Level 2"
+            scene.startLabel.text = "Go to level 2"
             scene.scaleMode = .aspectFit
             scene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
             let transition = SKTransition.crossFade(withDuration: 2.0)

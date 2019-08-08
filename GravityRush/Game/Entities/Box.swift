@@ -16,13 +16,13 @@ final class Box: GKEntity {
         let spriteComponent = SpriteComponent(imageName: "box")
         self.addComponent(spriteComponent)
         
-        let physicsComponent = PhysicsComponent(category: PhysicsCategory.Box, contact: PhysicsCategory.None, collision: PhysicsCategory.Box | PhysicsCategory.Wall | PhysicsCategory.Hero | PhysicsCategory.Enemy, spriteComponent: spriteComponent)
+        let physicsComponent = PhysicsComponent(category: PhysicsCategory.Box, contact: PhysicsCategory.Button, collision: PhysicsCategory.Box | PhysicsCategory.Wall | PhysicsCategory.Hero | PhysicsCategory.Button, spriteComponent: spriteComponent)
         self.addComponent(physicsComponent)
         
         let rotationComponent = RotationComponent(rotation: 0, spriteComponent: spriteComponent, physicsComponent: physicsComponent)
         self.addComponent(rotationComponent)
         
-        let bounceComponent = BounceComponent(restitution: 0.3, physicsComponent: physicsComponent)
+        let bounceComponent = BounceComponent(restitution: 0.1, physicsComponent: physicsComponent)
         self.addComponent(bounceComponent)
         
         let weightComponent = WeightComponent(physicsComponent: physicsComponent)

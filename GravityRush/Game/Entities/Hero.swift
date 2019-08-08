@@ -19,7 +19,7 @@ final class Hero: GKEntity {
         let rotationComponent = RotationComponent(rotation: 0, spriteComponent: spriteComponent)
         self.addComponent(rotationComponent)
         
-        let physicsComponent = PhysicsComponent(category: PhysicsCategory.Hero, contact: PhysicsCategory.Enemy | PhysicsCategory.Exit, collision: PhysicsCategory.Wall | PhysicsCategory.Box, spriteComponent: spriteComponent)
+        let physicsComponent = PhysicsComponent(category: PhysicsCategory.Hero, contact: PhysicsCategory.Enemy | PhysicsCategory.Exit | PhysicsCategory.Button, collision: PhysicsCategory.Wall | PhysicsCategory.Box, spriteComponent: spriteComponent)
         self.addComponent(physicsComponent)
         
         let bounceComponent = BounceComponent(restitution: 0.1, physicsComponent: physicsComponent)

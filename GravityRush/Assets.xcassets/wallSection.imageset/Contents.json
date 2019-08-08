@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "box.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "wallSection.png",
       "scale" : "2x"
     },
     {

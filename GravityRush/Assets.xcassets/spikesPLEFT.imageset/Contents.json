@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "box.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "spikesPLEFT.png",
       "scale" : "2x"
     },
     {

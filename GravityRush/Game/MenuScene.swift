@@ -37,13 +37,13 @@ class MenuScene: SKScene {
         for touch in touches {
             let location = touch.location(in: self)
             if startButton.contains(location) {
-                if startLabel.text == "Try again" {
-                    let scene = GameScene2(size: self.view!.bounds.size)
+                if startLabel.text == "Try level 3 again" || startLabel.text == "Go to level 3"{
+                    let scene = GameScene3(size: self.view!.bounds.size)
                     let transition = SKTransition.crossFade(withDuration: 2.0)
                     self.view?.presentScene(scene, transition: transition)
                     return
                 }
-                else if startLabel.text == "Level 2" {
+                else if startLabel.text == "Go to level 2" || startLabel.text == "Try level 2 again" {
                     let scene = GameScene2(size: self.view!.bounds.size)
                     let transition = SKTransition.crossFade(withDuration: 2.0)
                     self.view?.presentScene(scene, transition: transition)
