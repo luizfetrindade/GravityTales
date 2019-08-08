@@ -49,5 +49,10 @@ final class GameScene2: GameScene {
         let spikeDown2 = Spike(imageName: "spikesPDOWN")
         entityManager.add(entity: spikeDown2)
         spikeDown2.component(ofType: SpriteComponent.self)?.spriteNode.position = CGPoint(x: sceneWidth/2 + spikeDown2.component(ofType: SpriteComponent.self)!.spriteNode.size.width, y: sceneHeight - 140 - 15)
+        
+        let exit = Exit()
+        exit.component(ofType: SpriteComponent.self)?.spriteNode.position = CGPoint(x: universalUnit(14.5), y: universalUnit(1.5))
+        exit.component(ofType: SpriteComponent.self)?.spriteNode.zPosition = CGFloat(-0.999)
+        entityManager.add(entity: exit)
     }
 }
