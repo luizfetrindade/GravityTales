@@ -22,7 +22,7 @@ final class GameScene: SKScene {
     
     override func didMove(to view: SKView) {
         super.didMove(to: view)
-        //        self.view?.showsPhysics = true
+        
         physicsWorld.contactDelegate = self
         
         scene?.anchorPoint = CGPoint(x: 0, y: 0)
@@ -36,17 +36,18 @@ final class GameScene: SKScene {
         let swipeLeft : UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.swipedLeft))
         let swipeUp : UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.swipedUp))
         let swipeDown : UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.swipedDown))
+        let tap : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(GameScene.taped))
         
         swipeLeft.direction = .left
         swipeRight.direction = .right
         swipeUp.direction = .up
         swipeDown.direction = .down
         
+        view.addGestureRecognizer(tap)
         view.addGestureRecognizer(swipeRight)
         view.addGestureRecognizer(swipeLeft)
         view.addGestureRecognizer(swipeUp)
         view.addGestureRecognizer(swipeDown)
-        
     }
     
     private func createWorld() {
@@ -135,11 +136,16 @@ final class GameScene: SKScene {
         let wall = Wall(imageName: "wallVertical", hasPhysicsBody: true)
         entityManager.add(entity: wall)
         wall.component(ofType: SpriteComponent.self)?.spriteNode.position = CGPoint(x: sceneWidth/2, y: wall.component(ofType: SpriteComponent.self)!.spriteNode.size.height/2)
-        
     }
     
+    @objc func taped(sender: UITapGestureRecognizer){
+        if touched {
+            gosmito?.component(ofType: JumpComponent.self)?.jump()
+            print("jump")
+        }
+    }
     
-    @objc func swipedRight(sender: UISwipeGestureRecognizer, x: CGFloat, y: CGFloat, z: CGFloat) {
+    @objc func swipedRight(sender: UISwipeGestureRecognizer) {
         self.physicsWorld.gravity.dx = 1.5
         self.physicsWorld.gravity.dy = 0.0
         gosmito?.component(ofType: RotationComponent.self)?.rotate(direction: "right")
@@ -151,8 +157,6 @@ final class GameScene: SKScene {
         self.physicsWorld.gravity.dy = 0.0
         gosmito?.component(ofType: RotationComponent.self)?.rotate(direction: "left")
         touched = false
-
-        
     }
     
     @objc func swipedUp(sender: UISwipeGestureRecognizer) {
@@ -160,8 +164,6 @@ final class GameScene: SKScene {
         self.physicsWorld.gravity.dy = 1.5
         gosmito?.component(ofType: RotationComponent.self)?.rotate(direction: "up")
         touched = false
-
-        
     }
     
     @objc func swipedDown(sender: UISwipeGestureRecognizer) {
@@ -169,8 +171,6 @@ final class GameScene: SKScene {
         self.physicsWorld.gravity.dy = -1.5
         gosmito?.component(ofType: RotationComponent.self)?.rotate(direction: "down")
         touched = false
-
-        
     }
     
     
@@ -188,22 +188,26 @@ final class GameScene: SKScene {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         touched = true
+        print("tapped")
         for touch in touches {
             location = touch.location(in: self)
-            
         }
+    }
+    
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        touched = false
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         touched = true
         for touch in touches {
             location = touch.location(in: self)
-            
         }
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         // Stop node from moving to touch
+        print("ended")
         touched = false
     }
     
@@ -221,32 +225,42 @@ final class GameScene: SKScene {
         }
     }
 }
+
+extension GameScene: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
     
-    extension GameScene: SKPhysicsContactDelegate {
-        func didBegin(_ contact: SKPhysicsContact) {
-            var firstBody: SKPhysicsBody
-            var secondBody: SKPhysicsBody
-            
-            if contact.bodyA.node?.name == "sphere" || contact.bodyB.node?.name == "sphere" {
-                let scene = MenuScene(size: self.view!.bounds.size)
-                scene.congratsLabel.text = "you failed all who trusted in you"
-                scene.startLabel.text = "Try again"
-                scene.scaleMode = .aspectFit
-                scene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-                let transition = SKTransition.crossFade(withDuration: 2.0)
-                self.view?.presentScene(scene, transition: transition)
-                return
-            }
-            else if contact.bodyA.node?.name == "player1" || contact.bodyB.node?.name == "player1" {
-                let scene = MenuScene(size: self.view!.bounds.size)
-                scene.congratsLabel.text = "Congrats dog"
-                scene.startLabel.text = "Level 2"
-                scene.scaleMode = .aspectFit
-                scene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-                let transition = SKTransition.crossFade(withDuration: 2.0)
-                self.view?.presentScene(scene, transition: transition)
-                return
-            }
+//    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRequireFailureOf otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+//
+//    }
+}
+
+extension GameScene: SKPhysicsContactDelegate {
+    func didBegin(_ contact: SKPhysicsContact) {
+        var firstBody: SKPhysicsBody
+        var secondBody: SKPhysicsBody
+        
+        if contact.bodyA.node?.name == "sphere" || contact.bodyB.node?.name == "sphere" {
+            let scene = MenuScene(size: self.view!.bounds.size)
+            scene.congratsLabel.text = "you failed all who trusted in you"
+            scene.startLabel.text = "Try again"
+            scene.scaleMode = .aspectFit
+            scene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+            let transition = SKTransition.crossFade(withDuration: 2.0)
+            self.view?.presentScene(scene, transition: transition)
+            return
         }
+        else if contact.bodyA.node?.name == "player1" || contact.bodyB.node?.name == "player1" {
+            let scene = MenuScene(size: self.view!.bounds.size)
+            scene.congratsLabel.text = "Congrats dog"
+            scene.startLabel.text = "Level 2"
+            scene.scaleMode = .aspectFit
+            scene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+            let transition = SKTransition.crossFade(withDuration: 2.0)
+            self.view?.presentScene(scene, transition: transition)
+            return
+        }
+    }
 }
 

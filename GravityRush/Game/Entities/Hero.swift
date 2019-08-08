@@ -32,7 +32,7 @@ final class Hero: GKEntity {
         self.addComponent(moveComponent)
         
         
-        let jumpComponent = JumpComponent(node: spriteComponent.spriteNode, strength: 2)
+        let jumpComponent = JumpComponent(node: spriteComponent.spriteNode, strength: 20)
         self.addComponent(jumpComponent)
     }
     

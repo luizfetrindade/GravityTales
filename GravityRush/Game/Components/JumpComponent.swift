@@ -24,6 +24,6 @@ final class JumpComponent: GKComponent {
     }
     
     func jump() {
-        node.physicsBody?.applyForce(CGVector(dx: 0, dy: strength))
+        node.physicsBody?.applyImpulse(CGVector(dx: 0, dy: strength))
     }
 }
