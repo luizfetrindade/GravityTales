@@ -50,6 +50,14 @@ class GameScene: SKScene {
     private func createWorld() {
         guard let scene = scene else { fatalError() }
         
+        scene.backgroundColor = #colorLiteral(red: 0.4391688704, green: 0.4392459095, blue: 0.3695387244, alpha: 1)
+        
+//        let background = SKSpriteNode(imageNamed: "background")
+//        background.anchorPoint = CGPoint(x: 0, y: 0)
+//        background.position = CGPoint(x: 0, y: 0)
+//        background.zPosition = CGFloat(-1)
+//        scene.addChild(background)
+        
         let sceneHeight: CGFloat = scene.size.height
         let sceneWidth: CGFloat = sceneHeight * (CGFloat(16) / CGFloat(9))
         
@@ -118,10 +126,7 @@ class GameScene: SKScene {
         entityManager.add(entity: gosmito)
         self.gosmito = gosmito
         
-        let exit = Exit()
-        exit.component(ofType: SpriteComponent.self)?.spriteNode.position = CGPoint(x: 660, y: 80)
-        exit.component(ofType: SpriteComponent.self)?.spriteNode.zPosition = CGFloat(-1)
-        entityManager.add(entity: exit)
+        
     }
     
     public func createLevel() {
@@ -140,6 +145,10 @@ class GameScene: SKScene {
         entityManager.add(entity: wall)
         wall.component(ofType: SpriteComponent.self)?.spriteNode.position = CGPoint(x: sceneWidth/2, y: wall.component(ofType: SpriteComponent.self)!.spriteNode.size.height/2)
         
+        let exit = Exit()
+        exit.component(ofType: SpriteComponent.self)?.spriteNode.position = CGPoint(x: universalUnit(14.5), y: universalUnit(1.5))
+        exit.component(ofType: SpriteComponent.self)?.spriteNode.zPosition = CGFloat(-0.999)
+        entityManager.add(entity: exit)
     }
         
     

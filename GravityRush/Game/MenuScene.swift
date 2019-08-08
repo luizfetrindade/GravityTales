@@ -50,7 +50,7 @@ class MenuScene: SKScene {
                     return
                 }
                 else {
-                    let scene = GameScene2(size: self.view!.bounds.size)
+                    let scene = GameScene3(size: self.view!.bounds.size)
                     let transition = SKTransition.crossFade(withDuration: 2.0)
                     self.view?.presentScene(scene, transition: transition)
                     return

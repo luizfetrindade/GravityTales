@@ -16,6 +16,7 @@ public struct PhysicsCategory {
     public static let Exit: UInt32 = 0b100
     public static let Enemy: UInt32  = 0b1000
     public static let Box: UInt32 = 0b10000
+    public static let Button: UInt32 = 0b100000
     public static let All: UInt32 = UInt32.max
 }
 
@@ -35,6 +36,7 @@ final class PhysicsComponent: GKComponent {
         self.physicsBody.allowsRotation = false
         self.physicsBody.isDynamic = false
         self.physicsBody.usesPreciseCollisionDetection = true
+        self.physicsBody.friction = 0.5
         
         spriteComponent.spriteNode.physicsBody = self.physicsBody
         super.init()
