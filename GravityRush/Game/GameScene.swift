@@ -24,6 +24,7 @@ final class GameScene: SKScene {
         super.didMove(to: view)
         
         physicsWorld.contactDelegate = self
+        self.physicsWorld.gravity.dy = -1.5
         
         scene?.anchorPoint = CGPoint(x: 0, y: 0)
         
@@ -36,14 +37,23 @@ final class GameScene: SKScene {
         let swipeLeft : UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.swipedLeft))
         let swipeUp : UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.swipedUp))
         let swipeDown : UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.swipedDown))
+        
         let tap : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(GameScene.taped))
+        tap.numberOfTapsRequired = 1
+        
+        let longPress : UILongPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(GameScene.handleLongPress))
+        
+        longPress.delegate = self
+//        tap.delegate = self
         
         swipeLeft.direction = .left
         swipeRight.direction = .right
         swipeUp.direction = .up
         swipeDown.direction = .down
-        
+    
+        view.addGestureRecognizer(longPress)
         view.addGestureRecognizer(tap)
+        
         view.addGestureRecognizer(swipeRight)
         view.addGestureRecognizer(swipeLeft)
         view.addGestureRecognizer(swipeUp)
@@ -138,6 +148,22 @@ final class GameScene: SKScene {
         wall.component(ofType: SpriteComponent.self)?.spriteNode.position = CGPoint(x: sceneWidth/2, y: wall.component(ofType: SpriteComponent.self)!.spriteNode.size.height/2)
     }
     
+//    @objc func longPressed(sender: UILongPressGestureRecognizer) {
+//        print("long")
+//    }
+    
+    @objc func handleLongPress(gestureReconizer: UILongPressGestureRecognizer) {
+        if gestureReconizer.state != UIGestureRecognizer.State.ended {
+            touched = true
+            location = gestureReconizer.location(in: self.view)
+            print("long true")
+        }
+        else {
+           touched = false
+            print("long false")
+        }
+    }
+    
     @objc func taped(sender: UITapGestureRecognizer){
         if touched {
             gosmito?.component(ofType: JumpComponent.self)?.jump()
@@ -186,31 +212,31 @@ final class GameScene: SKScene {
         }
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        touched = true
-        print("tapped")
-        for touch in touches {
-            location = touch.location(in: self)
-        }
-    }
+//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        touched = true
+//        print("tapped")
+//        for touch in touches {
+//            location = touch.location(in: self)
+//        }
+//    }
     
-    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        touched = false
-    }
+//    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        touched = false
+//    }
     
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        touched = true
-        for touch in touches {
-            location = touch.location(in: self)
-        }
-    }
+//    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        touched = true
+//        for touch in touches {
+//            location = touch.location(in: self)
+//        }
+//    }
     
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        // Stop node from moving to touch
-        print("ended")
-        touched = false
-    }
-    
+//    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        // Stop node from moving to touch
+//        print("ended")
+//        touched = false
+//    }
+//
     func moveNodeToLocation(pos : CGPoint) {
         if self.physicsWorld.gravity.dx.isZero {
             if pos.x < 380 {
@@ -230,6 +256,7 @@ extension GameScene: UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }
+    
     
 //    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRequireFailureOf otherGestureRecognizer: UIGestureRecognizer) -> Bool {
 //
