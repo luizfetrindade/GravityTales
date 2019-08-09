@@ -44,7 +44,9 @@ class GameScene: SKScene {
         let longPress : UILongPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(GameScene.handleLongPress))
         
         longPress.delegate = self
-//        tap.delegate = self
+        print(longPress.minimumPressDuration)
+        longPress.minimumPressDuration = 0.1
+        print(longPress.minimumPressDuration)
         
         swipeLeft.direction = .left
         swipeRight.direction = .right
@@ -58,6 +60,14 @@ class GameScene: SKScene {
         view.addGestureRecognizer(swipeLeft)
         view.addGestureRecognizer(swipeUp)
         view.addGestureRecognizer(swipeDown)
+    }
+    
+    override func willMove(from view: SKView) {
+        super.willMove(from: view)
+        
+        for gesture in view.gestureRecognizers ?? [] {
+            view.removeGestureRecognizer(gesture)
+        }
     }
     
     private func createWorld() {
@@ -261,9 +271,9 @@ class GameScene: SKScene {
                 gosmito?.component(ofType: MoveComponent.self)?.move(timeOffset: timeOffset, direction: "left")
             }
         } else if pos.y < 200 {
-            gosmito?.component(ofType: MoveComponent.self)?.move(timeOffset: timeOffset, direction: "down")
-        } else {
             gosmito?.component(ofType: MoveComponent.self)?.move(timeOffset: timeOffset, direction: "up")
+        } else {
+            gosmito?.component(ofType: MoveComponent.self)?.move(timeOffset: timeOffset, direction: "down")
         }
     }
 }
@@ -284,7 +294,7 @@ extension GameScene: SKPhysicsContactDelegate {
         var firstBody: SKPhysicsBody
         var secondBody: SKPhysicsBody
         
-        if contact.bodyA.node?.name == "spikes" || contact.bodyB.node?.name == "spikes" {
+        if contact.bodyA.node!.name!.contains("spikes") || contact.bodyB.node!.name!.contains("spikes") {
             let scene = MenuScene(size: self.view!.bounds.size)
             scene.congratsLabel.text = "you failed all who trusted in you"
             scene.startLabel.text = "Try level 1 again"
