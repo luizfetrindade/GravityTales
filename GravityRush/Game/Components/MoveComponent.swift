@@ -25,10 +25,15 @@ final class MoveComponent: GKComponent {
     
     func move(timeOffset: TimeInterval, direction: String) {
         if direction == "left" {
-            node.position.x += CGFloat(80 * timeOffset)
+            node.position.x += CGFloat(60 * timeOffset)
         } else if direction == "right" {
-            node.position.x -= CGFloat(80 * timeOffset)
-        } else {
+            node.position.x -= CGFloat(60 * timeOffset)
+        } else if direction == "up" {
+            node.position.y += CGFloat(60 * timeOffset)
+        } else if direction == "down" {
+            node.position.y -= CGFloat(60 * timeOffset)
+        }
+        else {
             fatalError("Direction is wrong")
         }
     }

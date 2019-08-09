@@ -55,4 +55,31 @@ final class GameScene2: GameScene {
         exit.component(ofType: SpriteComponent.self)?.spriteNode.zPosition = CGFloat(-0.999)
         entityManager.add(entity: exit)
     }
+    
+    override func didBegin(_ contact: SKPhysicsContact) {
+        var firstBody: SKPhysicsBody
+        var secondBody: SKPhysicsBody
+        
+        if contact.bodyA.node!.name!.contains("spikes") || contact.bodyB.node!.name!.contains("spikes") {
+            let scene = MenuScene(size: self.view!.bounds.size)
+            scene.congratsLabel.text = "you failed all who trusted in you"
+            scene.startLabel.text = "Try level 2 again"
+            scene.scaleMode = .aspectFit
+            scene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+            let transition = SKTransition.crossFade(withDuration: 2.0)
+            self.view?.presentScene(scene, transition: transition)
+            return
+        }
+        else if contact.bodyA.node?.name == "player1" || contact.bodyB.node?.name == "player1" {
+            let scene = MenuScene(size: self.view!.bounds.size)
+            scene.congratsLabel.text = "Congrats dog"
+            scene.startLabel.text = "Go to level 3"
+            scene.scaleMode = .aspectFit
+            scene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+            let transition = SKTransition.crossFade(withDuration: 2.0)
+            self.view?.presentScene(scene, transition: transition)
+            return
+        }
+    }
+    
 }
